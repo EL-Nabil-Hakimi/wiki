@@ -52,45 +52,11 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                    <a href="index.html" rel="home">Spurgeon.</a>
+                    <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
 
-            <div class="row s-header__navigation">
-
-                <nav class="s-header__nav-wrap">
-    
-                    <h3 class="s-header__nav-heading">Navigate to</h3>
-    
-                    <ul class="s-header__nav">
-                        <li><a href="index.html" title="">Home</a></li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Categories</a>
-                            <ul class="sub-menu">
-                                <li><a href="category.html">Design</a></li>
-                                <li><a href="category.html">Lifestyle</a></li>
-                                <li><a href="category.html">Inspiration</a></li>
-                                <li><a href="category.html">Work</a></li>
-                                <li><a href="category.html">Health</a></li>
-                                <li><a href="category.html">Photography</a></li>
-                            </ul>
-                        </li>
-                        <li class="current-menu-item has-children">
-                            <a href="#0" title="" class="">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="single-standard.html">Standard Post</a></li>
-                                <li><a href="single-video.html">Video Post</a></li>
-                                <li><a href="single-audio.html">Audio Post</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="styles.html" title="">Styles</a></li>
-                        <li><a href="about.html" title="">About</a></li>
-                        <li><a href="contact.html" title="">Contact</a></li>
-                    </ul> <!-- end s-header__nav -->
-
-                </nav> <!-- end s-header__nav-wrap -->
-    
-            </div> <!-- end s-header__navigation -->
+            <?php include("../View/User/nav.php"); ?>
 
             <div class="s-header__search">
 
@@ -123,19 +89,19 @@
 
 
         <!-- # site-content
+        <?php foreach($results AS $result): ?>
         ================================================== -->
         <div id="content" class="s-content s-content--blog">
 
                 <div class="row entry-wrap">
                     <div class="column lg-12">
-
                         <article class="entry format-standard">
 
                             <header class="entry__header">
     
                                 <h1 class="entry__title">
-                                    Understanding and Using Negative Space.
-                                </h1>
+                                    <?= $result['title'] ;?>
+                            </h1>
 
                                 <div class="entry__meta">
                                     <div class="entry__meta-author">
@@ -143,14 +109,14 @@
                                             <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"></path>
                                         </svg>
-                                        <a href="#">Naruto Uzumaki</a> 
+                                        <a href="#"><?= $result['name'] ?></a> 
                                     </div>
                                     <div class="entry__meta-date">
                                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <circle cx="12" cy="12" r="7.25" stroke="currentColor" stroke-width="1.5"></circle>
                                             <path stroke="currentColor" stroke-width="1.5" d="M12 8V12L14 14"></path>
                                         </svg>
-                                        August 15, 2021 
+                                            <?= $result['date'] ?>
                                     </div>
                                     <div class="entry__meta-cat">
                                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -159,189 +125,26 @@
                                         </svg>
                                           
                                         <span class="cat-links">
-                                            <a href="#0">Inspiration</a>
-                                            <a href="#0">Design</a>
+
+                                            <a href="#0">Category</a>
+                                            <a href="#0"><?= $result['ctgrname'] ?></a>
+
                                         </span>
                                     </div>
                                 </div>
                             </header>
 
                             <div class="entry__media">
-                                <figure class="featured-image">
-                                    <img src="assets/user/images/thumbs/single/standard-1200.jpg" 
-                                      srcset="assets/user/images/thumbs/single/standard-2400.jpg 2400w, 
-                                              assets/user/images/thumbs/single/standard-1200.jpg 1200w, 
-                                              assets/user/images/thumbs/single/standard-600.jpg 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="">
+                                <figure class="featured-image" style="width:100% ; display:flex ; justify-content : center;">
+                                    <img src="<?= $result['image'] ?> " sizes="(max-width: 2400px) 100vw, 2400px" alt="">
                                 </figure>
                             </div>
 
                             <div class="content-primary">
 
                                 <div class="entry__content">
-                                    <p class="lead">
-                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
-                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
-                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
-                                    magna amet magna cupidatat qui labore cillum cillum cupidatat fugiat nostrud. </p> 
-
-                                    <p class="drop-cap">
-                                    Eligendi quam at quis. Sit vel neque quam consequuntur expedita quisquam. Incidunt quae 
-                                    qui error. Rerum non facere mollitia ut magnam laboriosam. Quisquam neque quia ex eligendi 
-                                    repellat illum quibusdam aut. Architecto quam consequuntur totam ratione reprehenderit est 
-                                    praesentium impedit maiores incididunt adipisicing veniam velit .
-                                    </p>
-            
-                                    <p>
-                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
-                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
-                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
-                                    magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum 
-                                    adipisicing aliqua ea nisi sint ut quis proident ullamco ut dolore culpa occaecat ut 
-                                    laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat 
-                                    in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                                    </p>
-                
-                                    <figure class="alignwide">
-                                        <img src="assets/user/images/sample-1200.jpg" 
-                                          srcset="assets/user/images/sample-2400.jpg 2400w, 
-                                                  assets/user/images/sample-1200.jpg 1200w, 
-                                                  assets/user/images/sample-600.jpg 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="">
-                                    </figure>
-            
-                                    <p>
-                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
-                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
-                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
-                                    magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum 
-                                    adipisicing aliqua ea nisi sint ut quis proident ullamco ut dolore culpa occaecat ut 
-                                    laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat 
-                                    in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                                    </p>
-            
-                                    <h2>Large Heading</h2>
-            
-                                    <p>
-                                    Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta 
-                                    nobis est eligendi optio cumque nihil impedit quo minus <a href="http://#">omnis voluptas assumenda est</a> 
-                                    id quod maxime placeat facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et 
-                                    aut officiis debitis aut rerum necessitatibus saepe eveniet ut et.</p>
-            
-                                    <blockquote>
-                                        <p>
-                                        For God so loved the world, that he gave his only Son, that whoever believes in 
-                                        him should not perish but have eternal life. For God did not send his Son into 
-                                        the world to condemn the world, but in order that the world might be 
-                                        saved through him.
-                                        </p>
-                                        <cite>John 3:16-17 ESV</cite>
-                                    </blockquote>
-            
-                                    <p>
-                                    Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores 
-                                    et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. 
-                                    Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit 
-                                    libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat 
-                                    occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed..</p>
-            
-                                    <h3>Smaller Heading</h3>
-            
-                                    <p>
-                                    Quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est 
-                                    eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas 
-                                    assumenda est, omnis dolor repellendus.
-                                    </p>
-            
-                                    <p>
-                                    Quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est 
-                                    eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas 
-                                    assumenda est, omnis dolor repellendus.
-                                    </p>
-                                        
-<pre><code class="language-css">
-    code {
-        font-size: 1.4rem;
-        margin: 0 .2rem;
-        padding: .2rem .6rem;
-        white-space: nowrap;
-        background: #F1F1F1;
-        border: 1px solid #E1E1E1;	
-        border-radius: 3px;
-    }
-</code></pre>
+                                   <p> <?= $result['description'] ?> </p>
                                             
-                                    <p>
-                                    Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et 
-                                    quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
-            
-                                    <ul>
-                                        <li>Donec nulla non metus auctor fringilla.
-                                            <ul>
-                                                <li>Lorem ipsum dolor sit amet.</li>
-                                                <li>Lorem ipsum dolor sit amet.</li>
-                                                <li>Lorem ipsum dolor sit amet.</li>
-                                            </ul>
-                                        </li>
-                                        <li>Donec nulla non metus auctor fringilla.</li>
-                                        <li>Donec nulla non metus auctor fringilla.</li>
-                                    </ul>
-            
-                                    <p>
-                                    Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas 
-                                    molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. 
-                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue 
-                                    laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing 
-                                    in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                                    </p>
-
-                                    <p class="entry__tags">
-                                        <strong>Tags:</strong>
-                    
-                                        <span class="entry__tag-list">
-                                            <a href="#0">orci</a>
-                                            <a href="#0">lectus</a>
-                                            <a href="#0">varius</a>
-                                            <a href="#0">turpis</a>
-                                        </span>
-                        
-                                    </p>
-    
-                                    <div class="entry__author-box">
-                                        <figure class="entry__author-avatar">
-                                            <img alt="" src="assets/user/images/avatars/user-06.jpg" class="avatar">
-                                        </figure>
-                                        <div class="entry__author-info">
-                                            <h5 class="entry__author-name">
-                                                <a href="#0">
-                                                    Naruto Uzumaki
-                                                </a>
-                                            </h5>
-                                            <p>
-                                            Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, 
-                                            a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam 
-                                            consequat occaecat.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </div> <!-- end entry-content -->
-
-                                <div class="post-nav">
-                                    <div class="post-nav__prev">
-                                        <a href="single-standard.html" rel="prev">
-                                            <span>Prev</span>
-                                            The Pomodoro Technique Really Works. 
-                                        </a>
-                                    </div>
-                                    <div class="post-nav__next">
-                                        <a href="single-standard.html" rel="next">
-                                            <span>Next</span>
-                                            How Imagery Drives User Experience.
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div> <!-- end content-primary -->
-
                         </article> <!-- end entry -->
 
                         <!-- comments -->
@@ -558,7 +361,7 @@
                 </div> <!-- end entry-wrap -->
         </section> <!-- end s-content -->
 
-
+<?php endforeach  ?>
         <!-- # site-footer
         ================================================== -->
         <footer id="colophon" class="s-footer">

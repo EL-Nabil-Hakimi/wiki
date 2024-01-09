@@ -2,7 +2,7 @@
 
 <?php   foreach ($results As $result): ?>
 
-        <article class="brick entry" data-animate-el>
+        <article class="brick entry">
 
             <div class="entry__thumb">
                 <a href="single-standard.html" class="thumb-link">

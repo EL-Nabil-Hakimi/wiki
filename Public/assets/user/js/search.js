@@ -9,6 +9,6 @@ var search = function () {
       }
     };
       
-    reponse.open("GET", "?route=search_page&title=" + title + "&category=" +category + "&tags=" + tags, true);
+    reponse.open("GET", "?route=search_page_home&title=" + title + "&category=" +category + "&tags=" + tags, true);
     reponse.send();
   };

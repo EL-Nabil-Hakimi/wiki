@@ -53,45 +53,12 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                    <a href="index.html" rel="home">Spurgeon.</a>
+                <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
 
-            <div class="row s-header__navigation">
+            <?php include("../View/home/nav.php"); ?>
 
-                <nav class="s-header__nav-wrap">
-    
-                    <h3 class="s-header__nav-heading">Navigate to</h3>
-    
-                    <ul class="s-header__nav">
-                        <li class="current-menu-item"><a href="index.html" title="">Home</a></li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Categories</a>
-                            <ul class="sub-menu">
-                                <li><a href="category.html">Design</a></li>
-                                <li><a href="category.html">Lifestyle</a></li>
-                                <li><a href="category.html">Inspiration</a></li>
-                                <li><a href="category.html">Work</a></li>
-                                <li><a href="category.html">Health</a></li>
-                                <li><a href="category.html">Photography</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="single-standard.html">Standard Post</a></li>
-                                <li><a href="single-video.html">Video Post</a></li>
-                                <li><a href="single-audio.html">Audio Post</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="styles.html" title="">Styles</a></li>
-                        <li><a href="about.html" title="">About</a></li>
-                        <li><a href="contact.html" title="">Contact</a></li>
-                    </ul> <!-- end s-header__nav -->
-
-                </nav> <!-- end s-header__nav-wrap -->
-    
-            </div> <!-- end s-header__navigation -->
 
             <div class="s-header__search">
 
@@ -232,7 +199,7 @@
                         <article class="brick entry" data-animate-el>
         
                             <div class="entry__thumb">
-                                <a href="single-standard.html" class="thumb-link">
+                                <a href="?route=info_page_home&id=<?= $result['id'] ?>" class="thumb-link">
                                     <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
                                         srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
                                 </a>

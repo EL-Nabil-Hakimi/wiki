@@ -44,7 +44,10 @@ class Wiki {
 
     public function getddWikiID($id){
         try{
-            $stmt = $this->db->prepare("    SELECT * FROM `articles` WHERE id = :id ");
+            $stmt = $this->db->prepare("SELECT articles.* , user.* , cateroies.name ctgrname FROM `articles`
+            INNER JOIN user ON user.id = articles.userID
+            INNER JOIN cateroies ON cateroies.id = articles.categoryID
+            WHERE articles.id = :id ");
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -55,17 +58,35 @@ class Wiki {
             }
     }
 
-    public function AddWiki($title , $description , $user_id , $ctgr_id) {    
-        try{    
-            $stmt = $this->db->prepare("INSERT INTO `articles`(`title`, `description`, `userID`, `categoryID`)
-                         VALUES (:title, :description, :user_id, :ctgr_id)");
+    public function AddWiki($title, $description, $user_id, $ctgr_id, $selectedTags, $imagePath)
+{
+    try {
+        $stmt = $this->db->prepare("INSERT INTO `articles`(`title`, `description`, `userID`, `categoryID` , `image`)
+                     VALUES (:title, :description, :user_id, :ctgr_id , :image)");
 
-            $stmt->bindParam(':title', $title , PDO::PARAM_STR);
-            $stmt->bindParam(':description', $description , PDO::PARAM_STR);
-            $stmt->bindParam(':user_id', $user_id , PDO::PARAM_STR);
-            $stmt->bindParam(':ctgr_id', $ctgr_id , PDO::PARAM_STR);
-            $stmt->bindParam(':title', $title , PDO::PARAM_STR);
-            $stmt->execute();
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt->bindParam(':ctgr_id', $ctgr_id, PDO::PARAM_STR);
+        $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
+        $result = $stmt->execute();
+
+        if ($result) {
+            $addtage = $this->db->prepare('SELECT * FROM articles ORDER BY id DESC LIMIT 1;');
+            $addtage->execute();
+            $resultTags = $addtage->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($resultTags) {
+                $id_wiki = $resultTags[0]['id'];
+                foreach ($selectedTags as $tags) {
+                    var_dump($tags);
+                    $stmt = $this->db->prepare("INSERT INTO `tages_user`(`wikiID`, `tagsID`) VALUES (:id_wiki, :id_user)");
+                    $stmt->bindParam(':id_wiki', $id_wiki);
+                    $stmt->bindParam(':id_user', $tags);
+                    $stmt->execute(); 
+                }
+            }
+        }           
 
             return true;   
             

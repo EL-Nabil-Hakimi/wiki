@@ -11,18 +11,45 @@
 
  <style>
     #searshDiv{
-        display: flex;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20%;
         justify-content: center;
         width: 100%;
     }
 
     #searshDiv input{
-        margin: 0pc 30px ;
+        margin: 10px 30px ;
     }
 
     #searshDiv input[type = submit]{
         background-color: black;
         color: white;
+    }
+    @media (max-width: 1220px) {
+    #searshDiv {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        justify-content: center;
+        width: 100%;
+    }
+}
+    @media (max-width: 815px) {
+    #searshDiv {
+        display: grid;
+        grid-template-columns: 40% 40%;
+        justify-content: center;
+        width: 100%;
+    }
+}
+    @media (max-width: 700px) {
+    #searshDiv {
+        display: grid;
+        grid-template-columns: 80%;
+        justify-content: center;
+        width: 100%;
+    }
+
+        
     }
  </style>
 
@@ -70,66 +97,17 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                    <a href="index.html" rel="home">Spurgeon.</a>
+                    <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
+     <div class="row s-header__navigation">
 
-            <div class="row s-header__navigation">
-
-                <nav class="s-header__nav-wrap">
-    
-                    <h3 class="s-header__nav-heading">Navigate to</h3>
-    
-                    <ul class="s-header__nav">
-                        <li><a href="index.html" title="">Home</a></li>
-                        <li class="current-menu-item has-children">
-                            <a href="#0" title="" class="">Categories</a>
-                            <ul class="sub-menu">
-                                <li><a href="category.html">Design</a></li>
-                                <li><a href="category.html">Lifestyle</a></li>
-                                <li><a href="category.html">Inspiration</a></li>
-                                <li><a href="category.html">Work</a></li>
-                                <li><a href="category.html">Health</a></li>
-                                <li><a href="category.html">Photography</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="single-standard.html">Standard Post</a></li>
-                                <li><a href="single-video.html">Video Post</a></li>
-                                <li><a href="single-audio.html">Audio Post</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="styles.html" title="">Styles</a></li>
-                        <li><a href="about.html" title="">About</a></li>
-                        <li><a href="contact.html" title="">Contact</a></li>
-                    </ul> <!-- end s-header__nav -->
-
-                </nav> <!-- end s-header__nav-wrap -->
+        
     
             </div> <!-- end s-header__navigation -->
 
-            <div class="s-header__search">
-
-                <div class="s-header__search-inner">
-                    <div class="row">
-    
-                        <form role="search" method="get" class="s-header__search-form" action="#">
-                            <label>
-                                <span class="u-screen-reader-text">Search for:</span>
-                                <input type="search" class="s-header__search-field" placeholder="Search for..." value="" name="s" title="Search for:" autocomplete="off">
-                            </label>
-                            <input type="submit" class="s-header__search-submit" value="Search"> 
-                        </form>
-    
-                        <a href="#0" title="Close Search" class="s-header__search-close">Close</a>
-    
-                    </div> <!-- end row -->
-                </div> <!-- s-header__search-inner -->
-    
-            </div> <!-- end s-header__search -->
-
+            <?php include("../View/home/nav.php"); ?>
+  
             <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
             <a class="s-header__search-trigger" href="#">
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -150,8 +128,7 @@
                 <div class="row">
                     <div class="column large-12">
                         <h1 class="page-title">
-                            <span class="page-title__small-type">Category:</span>
-                            Inspiration
+                            Wikies
                         </h1>
                        
                       
@@ -179,10 +156,10 @@
 
                         <?php   foreach ($results As $result): ?>
 
-                                <article class="brick entry" data-animate-el>
+                                <article class="brick entry">
 
                                     <div class="entry__thumb">
-                                        <a href="single-standard.html" class="thumb-link">
+                                        <a href="?route=info_page_home&id=<?= $result['id'] ?>" class="thumb-link">
                                             <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
                                                 srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
                                         </a>

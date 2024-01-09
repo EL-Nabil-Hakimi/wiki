@@ -24,7 +24,15 @@
     <link rel="icon" type="assets/user/image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="assets/user/image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-
+    <style>
+    .entry__excerptff {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-height: 100px;
+    }
+</style>
+    </style>
 </head>
 
 
@@ -53,45 +61,12 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                    <a href="index.html" rel="home">Spurgeon.</a>
+                <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
 
-            <div class="row s-header__navigation">
+            <?php include("../View/User/nav.php"); ?>
 
-                <nav class="s-header__nav-wrap">
-    
-                    <h3 class="s-header__nav-heading">Navigate to</h3>
-    
-                    <ul class="s-header__nav">
-                        <li class="current-menu-item"><a href="index.html" title="">Home</a></li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Categories</a>
-                            <ul class="sub-menu">
-                                <li><a href="category.html">Design</a></li>
-                                <li><a href="category.html">Lifestyle</a></li>
-                                <li><a href="category.html">Inspiration</a></li>
-                                <li><a href="category.html">Work</a></li>
-                                <li><a href="category.html">Health</a></li>
-                                <li><a href="category.html">Photography</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="single-standard.html">Standard Post</a></li>
-                                <li><a href="single-video.html">Video Post</a></li>
-                                <li><a href="single-audio.html">Audio Post</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="styles.html" title="">Styles</a></li>
-                        <li><a href="about.html" title="">About</a></li>
-                        <li><a href="contact.html" title="">Contact</a></li>
-                    </ul> <!-- end s-header__nav -->
-
-                </nav> <!-- end s-header__nav-wrap -->
-    
-            </div> <!-- end s-header__navigation -->
 
             <div class="s-header__search">
 
@@ -227,12 +202,14 @@
 
                         <div class="grid-sizer"></div>
 
-                        <article class="brick entry" data-animate-el>
+                        <?php   foreach ($results As $result): ?>
+
+                        <article class="brick entry" data-animate-el >
         
                             <div class="entry__thumb">
-                                <a href="single-standard.html" class="thumb-link">
-                                    <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
-                                        srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
+                                <a href="?route=info_page_user&id=<?= $result['id'] ?>" class="thumb-link">
+                                    <img src="<?= $result['image']; ?>" 
+                                     alt="">
                                 </a>
                             </div> <!-- end entry__thumb -->
         
@@ -240,25 +217,34 @@
                                 <div class="entry__header">
                                     <div class="entry__meta">
                                         <span class="cat-links">
-                                            <a href="#">Design</a>
+                                            <a href="#">Created By</a>
                                         </span>
                                         <span class="byline">
                                             By:
-                                            <a href="#0">Naruto Uzumaki</a>
+                                            <a href="#0"><?= $result['name'] ?></a>
                                         </span>
                                     </div>
-                                    <h1 class="entry__title"><a href="single-standard.html">Just a Normal Simple Blog Post.</a></h1>
+                                   
+                                    <h1 class="entry__title"><a href="single-standard.html"><?= $result['title'] ?></a></h1>
                                  </div>
-                                <div class="entry__excerpt">
-                                    <p>
-                                    Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla 
-                                    sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua cillum in.
+                                <div class="entry__excerpt"  style="max-height:200px;">
+                                    <p class="entry__excerptff" >
+                                        <?= $result['description'] ?>
                                     </p>
                                 </div>
+                                <div class="entry__meta">
+                                      
+                                      <span class="byline">
+                                          At :
+                                          <a href="#0"><?= $result['date'] ?></a>
+                                      </span>
+                                  </div>
                                 <a class="entry__more-link" href="#0">Read More</a>
                             </div> <!-- end entry__text -->
                         
+                            
                         </article> <!-- end article -->
+                     <?php endforeach ?>
 
                        
 
