@@ -6,8 +6,7 @@
 
             <div class="entry__thumb">
                 <a href="single-standard.html" class="thumb-link">
-                    <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
-                        srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
+                    <img src="<?= $result["image"] ?>" alt="">
                 </a>
             </div> <!-- end entry__thumb -->
 

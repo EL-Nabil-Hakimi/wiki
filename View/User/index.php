@@ -32,7 +32,6 @@
         max-height: 100px;
     }
 </style>
-    </style>
 </head>
 
 

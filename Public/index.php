@@ -6,7 +6,6 @@ use App\Controller\AuthController;
 use App\Controller\HomeControllersAdmin;
 use App\Controller\HomeControllersUser;
 
-
 $route = isset($_GET['route']) ? $_GET['route'] : 'login' ;
 
 switch ($route){
@@ -206,7 +205,7 @@ switch ($route){
                 $description = $_POST["description"];
                 $ctgr_id = $_POST["category"];
                 $selectedTags = isset($_POST["selectedTags"]) ? $_POST["selectedTags"] : array();
-                $user_id = 2;
+
                 if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
                     $imagePath = "assets/images/" . basename($_FILES["image"]["name"]);
                     move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
@@ -215,7 +214,19 @@ switch ($route){
                 }
             };
             $controller = new HomeControllersUser();
-            $controller->add_wiki($title, $description, $user_id, $ctgr_id, $selectedTags, $imagePath);
+            $controller->add_wiki($title, $description, $ctgr_id, $selectedTags, $imagePath);
+            break;
+        case 'deletewiki' : 
+            isset($_GET['idwiki']);
+            $id = $_GET['idwiki'];
+            $controller = new HomeControllersUser();
+            $controller->deletewiki($id);
+            break;
+
+        case 'mywikies_page_user':
+            
+            $controller = new HomeControllersUser();
+            $controller->mywikies_page_user();
             break;
 
     default :       

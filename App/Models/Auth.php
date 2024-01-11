@@ -53,7 +53,7 @@ class Auth{
             if($role==1){
                 return 1;
             }
-            else{
+            else if($role == 2){
                 return 2;
             }
         } else {

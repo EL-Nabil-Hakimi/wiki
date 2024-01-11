@@ -13,7 +13,7 @@
             <a href="?route=add_page_user" title="" class="">Add Wiki</a>
         </li>
         <li >
-            <a href="?route=category_page_user" title="" class="">My Wikies</a>
+            <a href="?route=mywikies_page_user" title="" class="">My Wikies</a>
         </li>
 
         <li><a href="?route=contact_page_user" title="">Contact</a></li>

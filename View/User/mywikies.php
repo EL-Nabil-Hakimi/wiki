@@ -52,6 +52,7 @@
         
     }
 
+
     .entry__excerptff {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -107,7 +108,6 @@
                     <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
-           
      <div class="row s-header__navigation">
 
         
@@ -130,13 +130,13 @@
         ================================================== -->
         <section id="content" class="s-content">
 
-        
-        <!-- pageheader -->
+
+            <!-- pageheader -->
             <div class="s-pageheader">
                 <div class="row">
                     <div class="column large-12">
                         <h1 class="page-title">
-                            Wikies
+                            My Wikies
                         </h1>
                        
                       
@@ -144,12 +144,7 @@
                     </div>
                        
                 </div>
-                <div id="searshDiv">
-                         <input type="text" id="title" placeholder="Search By Title...">
-                        <input type="text" id="category" placeholder="Search By Category...">
-                        <input type="text" id="tags" placeholder="Search By Tage...">
-                        <input type="submit" value='Search' onclick="search()">
-                </div>
+               
             </div> <!-- end s-pageheader-->
 
 
@@ -199,7 +194,8 @@
                       <a href="#0"><?= $result['date'] ?></a>
                   </span>
               </div>
-            <a class="entry__more-link" href="#0">Read More</a>
+            <a class="entry__more-link" style="color: green;" title="Modify" href="?route=modify">Modify</a>
+            <a class="entry__more-link" style="color:red" title="Delete" href="?route=deletewiki&idwiki=<?= $result['id'] ?> ">Delete</a>
         </div> <!-- end entry__text -->
     
         

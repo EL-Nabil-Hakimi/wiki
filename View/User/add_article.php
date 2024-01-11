@@ -110,15 +110,14 @@
                 </svg>
             </a>
 
-        </header> <!-- end s-header -->
+        </header> 
 
 
         <div class="comments-wrap">
 
             <div id="comments">
              
-            </div> <!-- end comments -->
-
+            </div> 
 
             <div class="comment-respond">
 
@@ -133,19 +132,19 @@
                         <fieldset class="row">
 
                         <div class="column lg-12 form-field" style="margin-bottom:30px">
-                                 <input type="file" class="u-fullwidth h-remove-bottom" placeholder="Image..." style="cursor : pointer;" accept=".jpg, .jpeg, .png," name="image">
+                                 <input type="file" class="u-fullwidth h-remove-bottom" placeholder="Image..." style="cursor : pointer;" accept=".jpg, .jpeg, .png," name="image" required>
                             </div>
                             
                             <div class="column lg-12 form-field">
-                                <input name="title" id="cWebsite" class="u-fullwidth h-remove-bottom" placeholder="title" value="" type="text">
+                                <input name="title" id="cWebsite" class="u-fullwidth h-remove-bottom" placeholder="title" value="" type="text" required>
                             </div>
                             
                             <div class="column lg-12 message form-field">
-                                <textarea name="description" id="cMessage" class="u-fullwidth" style="resize: none;" placeholder="description"></textarea>
+                                <textarea name="description" id="cMessage" class="u-fullwidth" style="resize: none;" placeholder="description" required></textarea>
                             </div>
                             
                             <div class="column lg-6 tab-12 form-field"  style="cursor: pointer; " >
-                            <select name="category">
+                            <select name="category" required>
                                 <option value="">Choese Your Category...</option>
                                 <?php foreach($resultctgr As $ctgr): ?>
                                     <option value="<?= $ctgr['id'] ?>"><?= $ctgr['name'] ?></option>

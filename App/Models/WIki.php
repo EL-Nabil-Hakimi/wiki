@@ -57,7 +57,6 @@ class Wiki {
                 return 0;
             }
     }
-
     public function AddWiki($title, $description, $user_id, $ctgr_id, $selectedTags, $imagePath)
 {
     try {
@@ -141,6 +140,24 @@ class Wiki {
         }
     } 
 
+
+    public function mywikies($id){
+        try{
+            $stmt = $this->db->prepare(" SELECT articles.* , user.name name FROM `articles` 
+                    INNER JOIN user ON user.id = articles.userID 
+                    WHERE actif IS NULL AND user.id = :id ORDER BY id DESC ");
+            $stmt->bindParam('id' , $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        catch (PDOException){
+            return false;
+        } 
+    }
+     
+
+    
     public function Search($title, $category, $tags){
 
         $sql = "SELECT articles.*, user.*, cateroies.name ctgr FROM articles
@@ -167,7 +184,7 @@ class Wiki {
         }
     
         if (!empty($conditions)) {
-            $sql .= " WHERE " . implode(" AND ", $conditions);        }
+            $sql .= " WHERE " . implode(" AND ", $conditions); }
     
         $stmt = $this->db->prepare($sql);
     
@@ -182,7 +199,8 @@ class Wiki {
         if (!empty($tags)) {
             $stmt->bindParam(':tags', $searchTags, PDO::PARAM_STR);
         }
-    
+        
+        
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
