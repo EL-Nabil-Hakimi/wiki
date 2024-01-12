@@ -39,7 +39,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
+			<a  class="nav-link">Categories</a>
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
@@ -47,11 +47,11 @@
 				</div>
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
-			<a href="#" class="notification">
+			<a  class="notification">
 				<i class='bx bxs-bell' ></i>
 				<span class="num">8</span>
 			</a>
-			<a href="#" class="profile">
+			<a  class="profile">
 			<img src="assets/dashboard/assets/img/people.png">
 			</a>
 		</nav>

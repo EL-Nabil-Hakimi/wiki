@@ -37,7 +37,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a >
 					<i class='bx bxs-group' ></i>
 					<span class="text">Team</span>
 				</a>
@@ -45,7 +45,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
+				<a >
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
 				</a>

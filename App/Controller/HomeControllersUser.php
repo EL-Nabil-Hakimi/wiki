@@ -12,16 +12,19 @@
             $results = $wikies->getAllWiki();
             require_once __DIR__.'/../../View/home/index.php';
         }
+
         public function category_page_home(){
             $wikies = new Wiki();
             $results = $wikies->getAllWiki();
             require_once __DIR__.'/../../View/home/category.php';
         }
+
         public function search_page_home($title ,$category , $tags ){
             $search = new Wiki();
             $results = $search->Search($title , $category , $tags);
             require_once __DIR__.'/../../View/search_page.php';
         }
+
         public function GetWiki($id){
             $search = new Wiki();
             $results = $search->getddWikiID($id);
@@ -32,7 +35,7 @@
         }
    
 //end controllers any usrs_______________________________________________________________________________
-//end controllers usrs who login_______________________________________________________________________________
+//end controllers usrs who ?route=login_______________________________________________________________________________
 
 
         public function index(){
@@ -40,24 +43,36 @@
 
             $wikies = new Wiki();
             $results = $wikies->getAllWiki();
-            require_once __DIR__.'/../../View/User/index.php';
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/index.php';
+            }
+                else {header('location:?route=login');}
         }
         public function category_page_user(){
             $id_user = (new Check)->isActif();
 
             $wikies = new Wiki();
             $results = $wikies->getAllWiki();
-            require_once __DIR__.'/../../View/User/category.php';
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/category.php';
+            }
+                else {header('location:?route=login');}
         }
         public function search_page_user($title ,$category , $tags ){
             $search = new Wiki();
             $results = $search->Search($title , $category , $tags);
-            require_once __DIR__.'/../../View/search_page.php';
+            require_once __DIR__.'/../../View/search_page_user.php';
         } 
         public function contactWiki_user(){
             $id_user = (new Check)->isActif();
 
-            require_once __DIR__.'/../../View/User/contact.php';
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/contact.php';
+            }
+                else {header('location:?route=login');}
         }
 
         public function GetWiki_user($id){
@@ -65,7 +80,11 @@
 
             $search = new Wiki();
             $results = $search->getddWikiID($id);
-            require_once __DIR__.'/../../View/User/info_product.php';
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/info_product.php';
+            }
+                else {header('location:?route=login');}
         }
 
 
@@ -80,7 +99,11 @@
             if(isset($_GET['modify'])){
                 echo "<script>alert('Is Modifed with Success');</script>";
             }
-            require_once __DIR__."/../../View/User/mywikies.php";
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/mywikies.php' ;
+            }
+                else {header('location:?route=login');}
         }
 
         public function add_page_user(){
@@ -90,7 +113,11 @@
             $resultstags = $getTags->getAllTags();
             $getctgr = new Categories();
             $resultctgr = $getctgr->getCategory();
-            require_once __DIR__.'/../../View/User/add_article.php';
+            if($_SESSION['role'] == 2){
+                
+                require_once __DIR__.'/../../View/User/add_article.php';
+            }
+                else {header('location:?route=login');}
         }
         public function add_wiki($title, $description, $ctgr_id, $selectedTags, $imagePath){
             $id_user = (new Check)->isActif();
@@ -102,8 +129,31 @@
 
         public function deletewiki($id){
             $delete = new Wiki();
-            $delete->DeleteddWiki($id);
+            $delete->DeleteWiki_user($id);
             header('location:?route=mywikies_page_user&delete');
+        }
+        public function modify_wiki($id){
+            $id_wiki = $id;
+            $getwiki = new Wiki();
+            $resultswiki = $getwiki->getddWikiID($id);
+            $getTags = new Tags();
+            $resultstags = $getTags->getAllTags();
+            $getctgr = new Categories();
+            $resultctgr = $getctgr->getCategory();
+
+            require_once __DIR__."/../../View/User/modify_article.php";
+        }
+
+        public function Update_Wiki($id , $title , $description , $ctgr_id , $selectedTags ,$imagePath){
+            $update  = new Wiki();
+            $result = $update->UpdateWiki($id , $title , $description , $ctgr_id , $selectedTags ,$imagePath);
+            if($result){
+                header("location:?route=mywikies_page_user&modify");
+            }
+            else{
+                header("location:?route=mywikies_page_user&error");
+            }
+
         }
 }
 ?>

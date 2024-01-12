@@ -5,7 +5,7 @@
         <article class="brick entry">
 
             <div class="entry__thumb">
-            <a href="?route=info_page_home&id=<?= $result['id_wiki'] ?>" class="thumb-link">
+            <a href="?route=info_page_user&id=<?= $result['id_wiki'] ?>" class="thumb-link">
                     <img src="<?= $result["image"] ?>" alt="">
                 </a>
             </div> <!-- end entry__thumb -->

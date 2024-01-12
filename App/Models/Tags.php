@@ -79,4 +79,20 @@ class Tags {
         }
     } 
 
+
+    public function deleteTagsByID($id)
+{
+    try {
+        $deleteStmt = $this->db->prepare('DELETE FROM tages_user WHERE wikiID  = :id');
+        $deleteStmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $deleteStmt->execute();
+
+        return true;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+
+
 }

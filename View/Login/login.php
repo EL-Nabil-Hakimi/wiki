@@ -28,8 +28,8 @@
 			      		</div>
 								<div class="w-100">
 									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+										<a  class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a  class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
 									</p>
 								</div>
 			      	</div>
@@ -53,7 +53,7 @@
 										</label>
 									</div>
 									<div class="w-50 text-md-right">
-										<a href="#">Forgot Password</a>
+										<a >Forgot Password</a>
 									</div>
 		            </div>
 		          </form>

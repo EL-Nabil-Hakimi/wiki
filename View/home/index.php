@@ -24,7 +24,14 @@
     <link rel="icon" type="assets/user/image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="assets/user/image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-
+    <style>
+    .entry__excerptff {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-height: 100px;
+    }
+</style>
 </head>
 
 
@@ -81,7 +88,7 @@
             </div> <!-- end s-header__search -->
 
             <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-            <a class="s-header__search-trigger" href="#">
+            <a class="s-header__search-trigger" >
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z"></path>
                 </svg>
@@ -111,7 +118,7 @@
                                         </span>
                                     </div>
                                     <h2 class="hero__entry-title">
-                                        <a href="single-standard.html">
+                                        <a >
                                             Understanding and Using Negative Space.
                                         </a>
                                     </h2>
@@ -120,7 +127,7 @@
                                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
                                     nostrud corporis est laudantium voluptatum consectetur adipiscing. 
                                     </p>
-                                    <a class="hero__more-link" href="single-standard.html">Read More</a>
+                                    <a class="hero__more-link" >Read More</a>
                                 </div>
                             </div>
                         </article>
@@ -134,7 +141,7 @@
                                         </span>
                                     </div>
                                     <h2 class="hero__entry-title">
-                                        <a href="single-standard.html">
+                                        <a >
                                             10 Reasons Why Being in Nature Is Good For You.
                                         </a>
                                     </h2>
@@ -142,7 +149,7 @@
                                     Voluptas harum sequi rerum quasi quisquam. Est tenetur ut doloribus in aliquid animi nostrum. Tempora 
                                     quibusdam ad nulla. Quis autem possimus dolores est est fugiat saepe vel aut. Earum consequatur.
                                     </p>
-                                    <a class="hero__more-link" href="single-standard.html">Read More</a>
+                                    <a class="hero__more-link" >Read More</a>
                                 </div>
                             </div>
                         </article>
@@ -156,7 +163,7 @@
                                         </span>
                                     </div>
                                     <h2 class="hero__entry-title">
-                                        <a href="single-standard.html">
+                                        <a >
                                             Six Relaxation Techniques to Reduce Stress.
                                         </a>
                                     </h2>
@@ -164,7 +171,7 @@
                                     Quasi consequatur quia excepturi ullam velit. Repellat velit vel occaecati neque perspiciatis quibusdam nulla. 
                                     Unde et earum. Nostrum nulla optio debitis odio modi. Quis autem possimus dolores est est fugiat saepe vel aut.
                                     </p>
-                                    <a class="hero__more-link" href="single-standard.html">Read More</a>
+                                    <a class="hero__more-link" >Read More</a>
                                 </div>
                             </div>
                         </article>
@@ -196,12 +203,12 @@
 
                         <?php   foreach ($results As $result): ?>
 
-                        <article class="brick entry" data-animate-el>
+                        <article class="brick entry" data-animate-el >
         
                             <div class="entry__thumb">
                                 <a href="?route=info_page_home&id=<?= $result['id'] ?>" class="thumb-link">
-                                    <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
-                                        srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
+                                    <img src="<?= $result['image']; ?>" 
+                                     alt="">
                                 </a>
                             </div> <!-- end entry__thumb -->
         
@@ -209,7 +216,7 @@
                                 <div class="entry__header">
                                     <div class="entry__meta">
                                         <span class="cat-links">
-                                            <a href="#">Created By</a>
+                                            <a >Created By</a>
                                         </span>
                                         <span class="byline">
                                             By:
@@ -217,11 +224,11 @@
                                         </span>
                                     </div>
                                    
-                                    <h1 class="entry__title"><a href="single-standard.html"><?= $result['title'] ?></a></h1>
+                                    <h1 class="entry__title"><a ><?= $result['title'] ?></a></h1>
                                  </div>
-                                <div class="entry__excerpt">
-                                    <p>
-                                    <?= $result['description'] ?>
+                                <div class="entry__excerpt"  style="max-height:200px;">
+                                    <p class="entry__excerptff" >
+                                        <?= $result['description'] ?>
                                     </p>
                                 </div>
                                 <div class="entry__meta">

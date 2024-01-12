@@ -58,42 +58,39 @@ class Wiki {
             }
     }
     public function AddWiki($title, $description, $user_id, $ctgr_id, $selectedTags, $imagePath)
-{
-    try {
-        $stmt = $this->db->prepare("INSERT INTO `articles`(`title`, `description`, `userID`, `categoryID` , `image`)
-                     VALUES (:title, :description, :user_id, :ctgr_id , :image)");
-
-        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
-        $stmt->bindParam(':ctgr_id', $ctgr_id, PDO::PARAM_STR);
-        $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
-        $result = $stmt->execute();
-
-        if ($result) {
-            $addtage = $this->db->prepare('SELECT * FROM articles ORDER BY id DESC LIMIT 1;');
-            $addtage->execute();
-            $resultTags = $addtage->fetchAll(PDO::FETCH_ASSOC);
-
-            if ($resultTags) {
-                $id_wiki = $resultTags[0]['id'];
-                foreach ($selectedTags as $tags) {
-                    var_dump($tags);
-                    $stmt = $this->db->prepare("INSERT INTO `tages_user`(`wikiID`, `tagsID`) VALUES (:id_wiki, :id_user)");
-                    $stmt->bindParam(':id_wiki', $id_wiki);
-                    $stmt->bindParam(':id_user', $tags);
-                    $stmt->execute(); 
+    {
+        try {
+            $stmt = $this->db->prepare("INSERT INTO `articles`(`title`, `description`, `userID`, `categoryID` , `image`)
+                         VALUES (:title, :description, :user_id, :ctgr_id , :image)");
+    
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->bindParam(':ctgr_id', $ctgr_id, PDO::PARAM_INT);
+            $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
+            $result = $stmt->execute();
+    
+            if ($result) {
+                $addtage = $this->db->prepare('SELECT * FROM articles WHERE userID = :user_id ORDER BY id DESC LIMIT 1;');
+                $addtage->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                $addtage->execute();
+                $resultTags = $addtage->fetchAll(PDO::FETCH_ASSOC);
+    
+                if ($resultTags) {
+                    $id_wiki = $resultTags[0]['id'];
+                    foreach ($selectedTags as $tags) {
+                        $stmt = $this->db->prepare("INSERT INTO `tages_user`(`wikiID`, `tagsID`) VALUES (:id_wiki, :id_user)");
+                        $stmt->bindParam(':id_wiki', $id_wiki);
+                        $stmt->bindParam(':id_user', $tags);
+                        $stmt->execute(); 
+                    }
                 }
             }
-        }           
-
-            return true;   
-            
+        } catch (PDOException $e) {
+            return false;
         }
-            catch (PDOException){
-                return 0;
-            }
     }
+    
 
     public function DeleteddWiki($id) {
         try {
@@ -107,6 +104,14 @@ class Wiki {
         } catch (PDOException $e) {
             return false;
         }
+    }
+
+    
+    public function DeleteWiki_user($id){
+        $stmt = $this->db->prepare("DELETE FROM `articles` WHERE id = :id");
+        $stmt->bindParam(':id' , $id);
+        $stmt->execute();
+        return 1;
     }
     
     public function RestoreWiki($id) {
@@ -124,22 +129,49 @@ class Wiki {
     }
     
 
-    public function UpdateddWiki($id , $title , $description , $ctgr_id) {
-        try{
-            $stmt = $this->db->prepare("UPDATE `articles` 
-                            SET `title`= :title,`description`= :description,`categoryID`= :ctgr_id WHERE id = :id");
-            $stmt->bindParam(':id' , $id, PDO::PARAM_INT);
-            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-            $stmt->bindParam(':ctgr_id', $ctgr_id, PDO::PARAM_STR);
-            $stmt->execute();
-        return true;
-    }
-        catch (PDOException){
+    public function UpdateWiki($wiki_id, $title, $description, $ctgr_id, $selectedTags, $imagePath)
+{
+  
+        $deletesAllTags = new Tags();
+        $deletesAllTags->deleteTagsByID($wiki_id);
+
+        $updateWikiStmt = $this->db->prepare("
+                                    UPDATE `articles` SET 
+                                    `title`= :title,
+                                    `description`=:description,
+                                    `categoryID`= :ctgr_id
+                                    " . (!empty($imagePath) ? ", `image` = :image" : '') . "
+                                     WHERE id = :wiki_id ");
+
+     
+        $updateWikiStmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $updateWikiStmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $updateWikiStmt->bindParam(':wiki_id', $wiki_id, PDO::PARAM_INT);
+        $updateWikiStmt->bindParam(':ctgr_id', $ctgr_id, PDO::PARAM_INT);
+
+        if (!empty($imagePath)) {
+            $updateWikiStmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
+        }
+
+        $result = $updateWikiStmt->execute();
+        if ($result) {
+            foreach ($selectedTags as $tags) {
+                $stmt = $this->db->prepare("INSERT INTO `tages_user`(`wikiID`, `tagsID`) VALUES (:id_wiki, :id_user)");
+                $stmt->bindParam(':id_wiki', $wiki_id, PDO::PARAM_INT);
+                $stmt->bindParam(':id_user', $tags, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+
+            return 1;
+        } else {
             return false;
         }
-    } 
+   
+}
 
+    
+    
+    
 
     public function mywikies($id){
         try{
@@ -160,7 +192,7 @@ class Wiki {
     
     public function Search($title, $category, $tags){
 
-        $sql = "SELECT articles.*, user.*, cateroies.name ctgr FROM articles
+        $sql = "SELECT articles.id id_wiki ,articles.title title, articles.description description, articles.date date, articles.image image, user.*, cateroies.name ctgr FROM articles
                 INNER JOIN user ON user.id = articles.userID 
                 INNER JOIN cateroies ON cateroies.id = articles.categoryID";
     

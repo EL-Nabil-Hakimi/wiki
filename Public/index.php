@@ -5,8 +5,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 use App\Controller\AuthController;
 use App\Controller\HomeControllersAdmin;
 use App\Controller\HomeControllersUser;
+use App\Models\Wiki;
 
-$route = isset($_GET['route']) ? $_GET['route'] : 'login' ;
+$route = isset($_GET['route']) ? $_GET['route'] : 'home' ;
 
 switch ($route){
 
@@ -134,7 +135,7 @@ switch ($route){
             break;
 // Partie User Not Login_______________________________________________________________________________
 
-    case 'home': 
+    case 'home':
         $controller = new HomeControllersUser();
         $controller->home();
         break;
@@ -184,7 +185,6 @@ switch ($route){
             $controller->search_page_user($title , $category , $tags);
             break;
         case 'info_page_user': 
-            
             isset($GET['id']);
             $id = $_GET['id'];
             $controller = new HomeControllersUser();
@@ -228,9 +228,36 @@ switch ($route){
             $controller = new HomeControllersUser();
             $controller->mywikies_page_user();
             break;
+        case 'modify_wiki_page':
+            isset($_GET['id']);
+            $id = $_GET['id']; 
+            $controller = new HomeControllersUser();
+            $controller->modify_wiki($id);
+            break;
+        case 'modify_wiki' :
+
+            if(isset($_POST['submit'])){
+                
+                $id = $_POST['id'];
+                $title = $_POST["title"];
+                $description = $_POST["description"];
+                $ctgr_id = $_POST["category"];
+                $selectedTags = isset($_POST["selectedTags"]) ? $_POST["selectedTags"] : array();
+
+                if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
+                    $imagePath = "assets/images/" . basename($_FILES["image"]["name"]);
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
+                } else {
+                    $imagePath = null;
+                }
+
+            $controller = new HomeControllersUser();
+            $controller->Update_Wiki($id , $title , $description , $ctgr_id , $selectedTags ,$imagePath); 
+            }          
+        break;
 
     default :       
-       echo 'Page Not Found 404';
+       require_once __DIR__ ."/../View/note_found.php";
 }
 
 

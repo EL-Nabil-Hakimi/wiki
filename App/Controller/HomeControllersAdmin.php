@@ -26,7 +26,9 @@ class HomeControllersAdmin{
 
     public function dashboard(){
         $id_user = (new Check())->isActif();
-        require_once __DIR__."/../../View/Admin/dashboard.php";
+        if($_SESSION['role'] == 1){
+        require_once __DIR__."/../../View/Admin/dashboard.php";}
+        else {header('location:login');}
     }
     public function wikies_page(){
         $id_user = (new Check())->isActif();
@@ -42,8 +44,10 @@ class HomeControllersAdmin{
             header("location:?route=wikies_page");
            }
         }
-        require_once __DIR__."/../../View/Admin/wikies.php";
-    }
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/wikies.php";}
+
+            else {header('location:login');}    }
     public function wikies_deleted_page(){
         $id_user = (new Check())->isActif();
 
@@ -57,7 +61,9 @@ class HomeControllersAdmin{
             header("location:?route=wikies_deleted_page");
            }
         }
-        require_once __DIR__."/../../View/Admin/wikies_deleted.php";
+       if($_SESSION['role'] == 1){
+        require_once __DIR__."/../../View/Admin/wikies_deleted.php";}
+        else {header('location:login');}
     }
 
     public function categories_page(){
@@ -66,12 +72,15 @@ class HomeControllersAdmin{
         $getCaterories = new Categories();
         $results = $getCaterories->getCategory();
 
-        require_once __DIR__."/../../View/Admin/categories.php";
-    }
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/categories.php";}
+            else {header('location:login');}    }
     public function page_add_category() {
         $id_user = (new Check())->isActif();
     
-        require_once __DIR__."/../../View/Admin/page_add_category.php";
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/page_add_category.php";}
+            else {header('location:login');}
     }
     public function delete_category($id) {
         $id_user = (new Check())->isActif();
@@ -99,7 +108,9 @@ class HomeControllersAdmin{
         $id_user = (new Check())->isActif();
         $getCategories = new Categories();
         $results = $getCategories->getCategoryID($id);
-        require_once __DIR__ ."/../../View/Admin/modify_cotegory.php";
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/modify_cotegory.php";}
+            else {header('location:login');}
     }
     public function modify_category($id , $name){
         $getCategories = new Categories();
@@ -113,7 +124,9 @@ class HomeControllersAdmin{
 
         $getTags = new Tags();
         $results = $getTags->getAllTags();        
-        require_once __DIR__ ."/../../View/Admin/tags.php";
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/tags.php";}
+            else {header('location:login');}
     }
 
     public function delete_tags($id){
@@ -131,7 +144,9 @@ class HomeControllersAdmin{
            $tag = new Tags();
            $results = $tag->getddTagsID($id);
 
-           require_once __DIR__ ."/../../View/Admin/modify_tags.php";
+           if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/modify_tags.php";}
+            else {header('location:login');}
 
     }
     public function modify_tage($id , $name){
@@ -149,7 +164,9 @@ class HomeControllersAdmin{
         $id_user = (new Check())->isActif();
 
         
-        require_once __DIR__ ."/../../View/Admin/page_add_tags.php";
+        if($_SESSION['role'] == 1){
+            require_once __DIR__."/../../View/Admin/page_add_tags.php";}
+            else {header('location:login');}
 
     }
     public function add_tage($name){

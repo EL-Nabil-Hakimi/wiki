@@ -6,7 +6,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact - Spurgeon</title>
+    <title>NB wiki</title>
 
     <script>
         document.documentElement.classList.remove('no-js');
@@ -21,11 +21,36 @@
     <!-- favicons
     ================================================== -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="assets/user/image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="assets/user/image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
 
+    <style>
+        .checkbox-container {
+                display: flex;
+                align-items: center;
+                padding:0px 10px;
+            }
+
+            .checkbox-container input {
+                margin-right: 5px;
+            }
+         
+
+    .checkbox-container input {
+        transform: scale(1.5);
+        margin-right : 10px;
+        accent-color : black;
+        cursor: pointer;
+        position: relative;
+        top: 8px;
+    }
+    
+   
+    </style>
+
 </head>
+
 
 <body id="top">
 
@@ -43,7 +68,7 @@
 
     <!-- page wrap
     ================================================== -->
-    <div id="page" class="s-pagewrap">
+    <div id="page" class="s-pagewrap ss-home">
 
 
         <!-- # site header 
@@ -52,10 +77,9 @@
 
             <div class="s-header__branding">
                 <p class="site-title">
-                <a href="?route=home" rel="home">NB.Wiki</a>
+                    <a href="index.html" rel="home">NB wiki</a>
                 </p>
             </div>
-
             <?php include("../View/User/nav.php"); ?>
 
 
@@ -86,109 +110,86 @@
                 </svg>
             </a>
 
-        </header> <!-- end s-header -->
+        </header> 
 
 
-        <!-- # site-content
-        ================================================== -->
-        <div id="content" class="s-content s-content--page">
+        <div class="comments-wrap">
 
-                <div class="row entry-wrap">
-                    <div class="column lg-12">
+            <div id="comments">
+             
+            </div> 
 
-                        <article class="entry">
+            <div class="comment-respond">
 
-                            <header class="entry__header entry__header--narrow">
-    
-                                <h1 class="entry__title">
-                                    Say Hello.
-                                </h1>
-    
-                            </header>
+                <!-- START respond -->
+                <div id="respond">
 
-                            <div class="entry__media">
-                                <figure class="featured-image">
-                                    <img src="assets/user/images/thumbs/contact/contact-1200.jpg" 
-                                      srcset="assets/user/images/thumbs/contact/contact-2400.jpg 2400w, 
-                                              assets/user/images/thumbs/contact/contact-1200.jpg 1200w, 
-                                              assets/user/images/thumbs/contact/contact-600.jpg 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="">
-                                </figure>
+                    <h3>
+                    Add Article 
+                    </h3>
+                    <?php foreach($resultswiki As $resultwiki) : ?>
+
+                    <form name="contactForm" id="contactForm" method="post" action="?route=modify_wiki" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?= $id_wiki ?>">
+                        <fieldset class="row">
+
+                        <div class="column lg-12 form-field" style="margin-bottom:30px">
+                                 <input type="file" class="u-fullwidth h-remove-bottom" placeholder="Image..."   style="cursor : pointer;" accept=".jpg, .jpeg, .png," name="image">
+                            </div>
+                            
+                            <div class="column lg-12 form-field">
+                                <input name="title" id="cWebsite" class="u-fullwidth h-remove-bottom" value="<?= $resultwiki['title'] ?>"  placeholder="title" value="" type="text" required>
+                            </div>
+                            
+                            <div class="column lg-12 message form-field">
+                                <textarea name="description" id="cMessage" class="u-fullwidth"  style="resize: none;" placeholder="description" required><?= $resultwiki['description'] ?></textarea>
+                            </div>
+                        <?php endforeach ?>
+                            <div class="column lg-6 tab-12 form-field"  style="cursor: pointer; " >
+                            <select name="category" required>
+                                <option value="">Choese Your Category...</option>
+                                <?php foreach($resultctgr As $ctgr): ?>
+                                    <option value="<?= $ctgr['id'] ?>"><?= $ctgr['name'] ?></option>
+                                    <?php endforeach ?>
+                                    <!-- Add more options as needed -->
+                                </select>                            
                             </div>
 
-                            <div class="content-primary">
-
-                                <div class="entry__content">
-        
-                                    <p class="lead">
-                                    Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
-                                    sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
-                                    enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
-                                    magna amet magna cupidatat qui labore cillum cillum cupidatat fugiat nostrud.</p> 
-
-                                    <p>
-                                    Eligendi quam at quis. Sit vel neque quam consequuntur expedita quisquam. Incidunt quae 
-                                    qui error. Rerum non facere mollitia ut magnam laboriosam. Quisquam neque quia ex eligendi 
-                                    repellat illum quibusdam aut. Architecto quam consequuntur totam ratione reprehenderit est 
-                                    praesentium. 
-                                    </p>
-
-                                    <div class="row block-large-1-2 block-tab-whole entry__blocks">
-                                        <div class="column">
-                                            <h4>Where to Find Us</h4>
-                                            <p>
-                                            1600 Amphitheatre Parkway<br>
-                                            Mountain View, CA<br>
-                                            94043 US
-                                            </p>
+                            <div class="column lg-6 tab-12 form-field" style="margin-bottom:30px">
+                                <h4 style="margin: 0;">Choese The Tags :</h4>
+                                <div  style="cursor: pointer; overflow-y: scroll; max-height: 200px; padding:10px 20px">
+                                    
+                                    <?php foreach($resultstags as $resulttag): ?>
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox_<?= $resulttag['id'] ?>" name="selectedTags[]" value="<?= $resulttag['id'] ?>">
+                                            <label for="checkbox_<?= $resulttag['id'] ?>"><?= $resulttag['name'] ?></label>
                                         </div>
-        
-                                        <div class="column">
-                                            <h4>Contact Info</h4>
-                                            <p>
-                                            someone@yourdomain.com<br>
-                                            info@yourdomain.com <br>
-                                            Phone: (+63) 555 1212
-                                            </p> 
-                                        </div>
-                                    </div>
+                                    <?php endforeach; ?>
+                                        
+                                </div>
+                                        
+                            </div>
+                           
+                                        
+                            </div>                              
 
-                                    <h4>Feel Free to Say Hi.</h4>
+                            
 
-                                    <form name="cForm" id="cForm" class="entry__form" method="post" action="" autocomplete="off">
-                                        <fieldset class="row">
+                            <div class="column lg-12">
+                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large u-fullwidth" value="Add Article" type="submit">
+                            </div>
+                            
+                        </fieldset>
+                    </form> <!-- end form -->
 
-                                            <div class="column lg-6 tab-12 form-field">
-                                                <input name="cName" id="cName" class="u-fullwidth" placeholder="Your Name" value="" type="text">
-                                            </div>
+                </div>
+                <!-- END respond-->
 
-                                            <div class="column lg-6 tab-12 form-field">
-                                                <input name="cEmail" id="cEmail" class="u-fullwidth" placeholder="Your Email" value="" type="text">
-                                            </div>
+            </div> <!-- end comment-respond -->
 
-                                            <div class="column lg-12 form-field">
-                                                <input name="cWebsite" id="cWebsite" class="u-fullwidth" placeholder="Website" value="" type="text">
-                                            </div>
+        </div> <!-- end comments-wrap -->
 
-                                            <div class="column lg-12 message form-field">
-                                                <textarea name="cMessage" id="cMessage" class="u-fullwidth" placeholder="Your Message"></textarea>
-                                            </div>
-
-                                            <div class="column lg-12">
-                                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large u-fullwidth" value="Add Comment" type="submit">
-                                            </div>
-
-                                        </fieldset>
-                                    </form> <!-- end form -->
-
-                            </div> <!-- end content-primary -->
-
-                        </article> <!-- end entry -->
-
-                    </div>
-                </div> <!-- end entry-wrap -->
-        </section> <!-- end s-content -->
-
-
+       
         <!-- # site-footer
         ================================================== -->
         <footer id="colophon" class="s-footer">
@@ -216,7 +217,7 @@
             <div class="row s-footer__main">
 
                 <div class="column lg-5 md-6 tab-12 s-footer__about">
-                    <h4>Spurgeon</h4>
+                    <h4>NB wiki</h4>
 
                     <p>
                     Lorem ipsum dolor sit amet, consectetur 
@@ -258,11 +259,11 @@
 
             <div class="row s-footer__bottom">
 
-              
+   
                 <div class="column lg-5 md-6 tab-12">
                     <div class="ss-copyright">
-                        <span>© Copyright Spurgeon 2021</span> 
-                        <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution <a href="https://themewagon.com">ThemeWagon</a></span>
+                        <span>© Copyright NB wiki 2021</span> 
+                        <span>Design by <a href="https://www.NB wiki.com/">NB wiki</a> Distribution <a href="https://NB.com">NB</a></span>
                     </div>
                 </div>
 

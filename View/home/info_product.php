@@ -79,7 +79,7 @@
             </div> <!-- end s-header__search -->
 
             <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-            <a class="s-header__search-trigger" href="#">
+            <a class="s-header__search-trigger" >
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z"></path>
                 </svg>
@@ -109,7 +109,7 @@
                                             <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"></path>
                                         </svg>
-                                        <a href="#"><?= $result['name'] ?></a> 
+                                        <a ><?= $result['name'] ?></a> 
                                     </div>
                                     <div class="entry__meta-date">
                                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -135,18 +135,15 @@
                             </header>
 
                             <div class="entry__media">
-                                <figure class="featured-image">
-                                    <img src="assets/user/images/thumbs/single/standard-1200.jpg" 
-                                      srcset="assets/user/images/thumbs/single/standard-2400.jpg 2400w, 
-                                              assets/user/images/thumbs/single/standard-1200.jpg 1200w, 
-                                              assets/user/images/thumbs/single/standard-600.jpg 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="">
+                                <figure class="featured-image" style="width:100% ; display:flex ; justify-content : center;">
+                                    <img src="<?= $result['image'] ?> " sizes="(max-width: 2400px) 100vw, 2400px" alt="">
                                 </figure>
                             </div>
 
                             <div class="content-primary">
 
                                 <div class="entry__content">
-                                   <p> <?= $result['description'] ?> </p>
+                                   <p  style="text-align: justify;"> <?= $result['description'] ?> </p>
                                             
                         </article> <!-- end entry -->
 

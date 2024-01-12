@@ -59,7 +59,7 @@
 <body>
 
     <header>
-        <h1>Medical Information Form</h1>
+        <h1>NB_WIKI</h1>
     </header>
 
     <main>

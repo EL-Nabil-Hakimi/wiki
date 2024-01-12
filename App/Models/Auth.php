@@ -49,11 +49,12 @@ class Auth{
     
         if ($row && password_verify($password, $row['password'])) {
             $_SESSION['id_user'] = $row['id'];
-            $role = $row["role"];
-            if($role==1){
+
+            $_SESSION['role'] = $row['role'];
+            if($_SESSION['role'] == 1){
                 return 1;
             }
-            else if($role == 2){
+            else if($_SESSION['role'] == 2){
                 return 2;
             }
         } else {

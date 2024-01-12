@@ -117,7 +117,7 @@
             <?php include("../View/User/nav.php"); ?>
   
             <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-            <a class="s-header__search-trigger" href="#">
+            <a class="s-header__search-trigger" >
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z"></path>
                 </svg>
@@ -172,7 +172,7 @@
             <div class="entry__header">
                 <div class="entry__meta">
                     <span class="cat-links">
-                        <a href="#">Created By</a>
+                        <a >Created By</a>
                     </span>
                     <span class="byline">
                         By:
@@ -180,7 +180,7 @@
                     </span>
                 </div>
                
-                <h1 class="entry__title"><a href="single-standard.html"><?= $result['title'] ?></a></h1>
+                <h1 class="entry__title"><a ><?= $result['title'] ?></a></h1>
              </div>
             <div class="entry__excerpt"  style="max-height:200px;">
                 <p class="entry__excerptff" >
@@ -194,7 +194,7 @@
                       <a href="#0"><?= $result['date'] ?></a>
                   </span>
               </div>
-            <a class="entry__more-link" style="color: green;" title="Modify" href="?route=modify">Modify</a>
+            <a class="entry__more-link" style="color: green;" title="Modify" href="?route=modify_wiki_page&id=<?= $result['id'] ?>">Modify</a>
             <a class="entry__more-link" style="color:red" title="Delete" href="?route=deletewiki&idwiki=<?= $result['id'] ?> ">Delete</a>
         </div> <!-- end entry__text -->
     

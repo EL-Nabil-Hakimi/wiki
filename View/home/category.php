@@ -51,6 +51,13 @@
 
         
     }
+
+    .entry__excerptff {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-height: 100px;
+    }
  </style>
 
     <script>
@@ -100,6 +107,7 @@
                     <a href="?route=home" rel="home">NB.Wiki</a>
                 </p>
             </div>
+           
      <div class="row s-header__navigation">
 
         
@@ -109,7 +117,7 @@
             <?php include("../View/home/nav.php"); ?>
   
             <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-            <a class="s-header__search-trigger" href="#">
+            <a class="s-header__search-trigger" >
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z"></path>
                 </svg>
@@ -122,8 +130,8 @@
         ================================================== -->
         <section id="content" class="s-content">
 
-
-            <!-- pageheader -->
+        
+        <!-- pageheader -->
             <div class="s-pageheader">
                 <div class="row">
                     <div class="column large-12">
@@ -140,7 +148,7 @@
                          <input type="text" id="title" placeholder="Search By Title...">
                         <input type="text" id="category" placeholder="Search By Category...">
                         <input type="text" id="tags" placeholder="Search By Tage...">
-                        <input type="submit" value='Search' onclick="search()">
+                        <input type="submit" value='Search' onclick="search_home()">
                 </div>
             </div> <!-- end s-pageheader-->
 
@@ -156,46 +164,46 @@
 
                         <?php   foreach ($results As $result): ?>
 
-                                <article class="brick entry">
+                            <article class="brick entry" data-animate-el >
+        
+        <div class="entry__thumb">
+            <a href="?route=info_page_home&id=<?= $result['id'] ?>" class="thumb-link">
+                <img src="<?= $result['image']; ?>" 
+                 alt="">
+            </a>
+        </div> <!-- end entry__thumb -->
 
-                                    <div class="entry__thumb">
-                                        <a href="?route=info_page_home&id=<?= $result['id'] ?>" class="thumb-link">
-                                            <img src="assets/user/images/thumbs/masonry/statue-600.jpg" 
-                                                srcset="assets/user/images/thumbs/masonry/statue-600.jpg 1x, assets/user/images/thumbs/masonry/statue-1200.jpg 2x" alt="">
-                                        </a>
-                                    </div> <!-- end entry__thumb -->
-
-                                    <div class="entry__text">
-                                        <div class="entry__header">
-                                            <div class="entry__meta">
-                                                <span class="cat-links">
-                                                    <a href="#">Created By</a>
-                                                </span>
-                                                <span class="byline">
-                                                    By:
-                                                    <a href="#0"><?= $result['name'] ?></a>
-                                                </span>
-                                            </div>
-                                        
-                                            <h1 class="entry__title"><a href="single-standard.html"><?= $result['title'] ?></a></h1>
-                                        </div>
-                                        <div class="entry__excerpt">
-                                            <p>
-                                            <?= $result['description'] ?>
-                                            </p>
-                                        </div>
-                                        <div class="entry__meta">
-                                            
-                                            <span class="byline">
-                                                At :
-                                                <a href="#0"><?= $result['date'] ?></a>
-                                            </span>
-                                        </div>
-                                        <a class="entry__more-link" href="#0">Read More</a>
-                                    </div> <!-- end entry__text -->
-
-                                    
-                                </article> <!-- end article -->
+        <div class="entry__text">
+            <div class="entry__header">
+                <div class="entry__meta">
+                    <span class="cat-links">
+                        <a >Created By</a>
+                    </span>
+                    <span class="byline">
+                        By:
+                        <a href="#0"><?= $result['name'] ?></a>
+                    </span>
+                </div>
+               
+                <h1 class="entry__title"><a ><?= $result['title'] ?></a></h1>
+             </div>
+            <div class="entry__excerpt"  style="max-height:200px;">
+                <p class="entry__excerptff" >
+                    <?= $result['description'] ?>
+                </p>
+            </div>
+            <div class="entry__meta">
+                  
+                  <span class="byline">
+                      At :
+                      <a href="#0"><?= $result['date'] ?></a>
+                  </span>
+              </div>
+            <a class="entry__more-link" href="#0">Read More</a>
+        </div> <!-- end entry__text -->
+    
+        
+    </article> <!-- end article -->
                                 <?php endforeach ?>
                     </div> <!-- end bricks-wrapper -->
 
