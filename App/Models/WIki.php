@@ -217,7 +217,7 @@ class Wiki {
     
         if (!empty($conditions)) {
             $sql .= " WHERE " . implode(" AND ", $conditions); }
-    
+        
         $stmt = $this->db->prepare($sql);
     
         if (!empty($title)) {
